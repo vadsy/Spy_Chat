@@ -1,7 +1,6 @@
-from Spy_details import spy_name, spy_salutation, spy_age, spy_rating, spy_is_online
-
+from Spy_details import spy
 print "Hello!\nLet's get started!\nWelcome to spy chat!"
-question1 = "Do you want to continue as %s %s?(Y/N)" % (spy_salutation, spy_name)
+question1 = "Do you want to continue as %s %s?(Y/N)" % (spy['spy_salutation'], spy['spy_name'])
 existing_spy = raw_input(question1)
 
 STATUS_MSG = []
@@ -34,6 +33,8 @@ def update_status(status):
             if x > pos:
                 print "Incorrect choice. Choose a correct option."
                 return None
+        else:
+            print"Wrong option. Status won't be changing."
     return status
 
 
@@ -56,12 +57,12 @@ def add_friend():
         print "Sorry! Invalid entry. We can't add spy with the details you provided"
 
 
-def start_chat(spy_name, spy_age, spy_rating):
+def start_chat(name, age, rating):
     status = None
-    spy_name = spy_salutation + " " + spy_name
-    if 12 < spy_age < 50:
+    name = spy['spy_salutation'] + " " + spy['spy_name']
+    if 12 < age < 50:
         print "Authentication complete. \nWelcome %s (age %d  and spy rating %.1f)\nProud to have you with us!" % (
-            spy_name, spy_age, spy_rating)
+            name, age, rating)
         show = True
         while show:
             question2 = "What would you like to do?\n1. Update Status.\n2. Add a friend. \n3. Send a secret message. " \
@@ -78,7 +79,7 @@ def start_chat(spy_name, spy_age, spy_rating):
 
 
 if existing_spy.upper() == 'Y':
-    start_chat(spy_name, spy_age, spy_rating)
+    start_chat(spy['spy_name'], spy['spy_age'], spy['spy_rating'])
 else:
     # Check if the length of the string entered is more than zero and is alphabets (not numerals or spl characters)
     spy_name = raw_input("What is your name? ")
